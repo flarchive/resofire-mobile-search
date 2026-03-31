@@ -1,0 +1,38 @@
+// On tablet and above, hide the Search we inject into the IndexPage toolbar —
+// it only belongs on the mobile view.
+@media @tablet-up {
+  .IndexPage-toolbar-view .item-search {
+    display: none;
+  }
+}
+
+@media @phone {
+  // Hide the header GlobalSearch (item key 'search' -> class 'item-search') on the
+  // index page, because we surface the Search component inline in the toolbar instead.
+  .App--index .Header-controls .item-search {
+    display: none;
+  }
+
+  // Expand the toolbar so the injected search bar fills available space.
+  .IndexPage-toolbar {
+    display: flex;
+
+    .IndexPage-toolbar-view {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+
+      .item-search {
+        flex: 1;
+
+        .Search-input input {
+          width: 100%;
+        }
+      }
+    }
+
+    .IndexPage-toolbar-action {
+      display: flex;
+    }
+  }
+}

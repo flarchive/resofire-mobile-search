@@ -1,0 +1,24 @@
+{
+    "name": "resofire/mobile-search",
+    "description": "Move mobile search to homepage",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "flarum/core": "^2.0.0"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Mobile Search",
+            "category": "theme",
+            "icon": {
+                "name": "fas fa-search",
+                "backgroundColor": "#684ba6",
+                "color": "#fff"
+            }
+        }
+    }
+}
