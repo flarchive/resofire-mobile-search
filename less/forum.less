@@ -1,0 +1,65 @@
+// ------------------------------------
+// Tablet and above: hide both injected items — the header GlobalSearch handles search.
+@media @tablet-up {
+  .IndexPage-toolbar-view {
+    .item-search-bar,
+    .item-search-icon {
+      display: none;
+    }
+  }
+}
+
+// ------------------------------------
+// Phone (max-width: 767.98px)
+@media @phone {
+  // Hide the header GlobalSearch on the index page.
+  .App--index .Header-controls .item-search {
+    display: none;
+  }
+
+  // Keep the toolbar as a flat row with no wrapping.
+  .IndexPage-toolbar {
+    align-items: center;
+
+    .IndexPage-toolbar-view {
+      flex: 1;
+      flex-wrap: nowrap;
+    }
+  }
+
+  .IndexPage-toolbar-view {
+    // Hide the icon button by default; it is only revealed at narrow widths below.
+    .item-search-icon {
+      display: none;
+    }
+
+    // Bar mode (>468px): the search bar takes up remaining space.
+    .item-search-bar {
+      flex: 1;
+
+      .Search-input .FormControl {
+        width: 100%;
+      }
+    }
+
+    // At 468px and below: swap bar for icon button.
+    @media (max-width: 468px) {
+      .item-search-bar {
+        display: none;
+      }
+      .item-search-icon {
+        display: block;
+      }
+    }
+  }
+
+  // Icon mode (admin setting): always use the icon button, hide the bar entirely.
+  html.resofire-icon-mode .IndexPage-toolbar-view {
+    .item-search-bar {
+      display: none !important;
+    }
+    .item-search-icon {
+      display: block !important;
+    }
+  }
+}
