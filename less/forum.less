@@ -1,0 +1,69 @@
+// On tablet and above, hide the GlobalSearch we inject into the IndexPage toolbar —
+// it only belongs on the mobile view.
+@media @tablet-up {
+  .IndexPage-toolbar-view .item-search {
+    display: none;
+  }
+}
+
+@media @phone {
+  // Hide the header GlobalSearch (item key 'search' -> class 'item-search') on the
+  // index page, because we surface GlobalSearch inline in the toolbar instead.
+  .App--index .Header-controls .item-search {
+    display: none;
+  }
+
+  // Expand the toolbar so the injected search fills available space.
+  .IndexPage-toolbar {
+    display: flex;
+
+    .IndexPage-toolbar-view {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+
+      .item-search {
+        flex: 1;
+
+        // Full-width bar mode (default): let the Search-input fill the available width.
+        .Search-input .FormControl {
+          width: 100%;
+        }
+      }
+    }
+
+    .IndexPage-toolbar-action {
+      display: flex;
+    }
+  }
+
+  // Icon mode: collapse the injected search to just the magnifying glass icon.
+  // The class is added to #app by the forum JS when the admin has chosen icon mode.
+  // The outer div.Search still has its onclick handler, so tapping the icon opens the modal.
+  #app.resofire-search-icon-mode {
+    .IndexPage-toolbar-view .item-search {
+      flex: 0 0 auto;
+
+      .Search-input {
+        // Collapse to the icon width; remove overflow:hidden so the
+        // absolute-positioned icon is not clipped.
+        width: 36px;
+        overflow: visible;
+
+        // Hide the text input entirely.
+        .FormControl {
+          display: none;
+        }
+
+        // Make the icon respond to pointer events and signal it is clickable.
+        .Input-prefix-icon {
+          position: static;
+          pointer-events: auto;
+          cursor: pointer;
+          margin-right: 0;
+          width: 36px !important;
+        }
+      }
+    }
+  }
+}
