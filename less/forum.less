@@ -1,0 +1,45 @@
+// On tablet and above, hide the search we inject into the IndexPage toolbar —
+// it only belongs on the mobile view.
+@media @tablet-up {
+  .IndexPage-toolbar-view .item-search {
+    display: none;
+  }
+}
+
+@media @phone {
+  // Hide the header GlobalSearch (item key 'search' -> class 'item-search') on the
+  // index page, because we surface search inline in the toolbar instead.
+  .App--index .Header-controls .item-search {
+    display: none;
+  }
+
+  // Stack toolbar-view items vertically so the sort dropdown and action buttons
+  // (refresh, mark-read) share the top row, and the search bar sits below as a
+  // full-width row — no wrapping or squeezing at any phone width.
+  .IndexPage-toolbar {
+    // Anchor the action buttons to the top so they align with the sort dropdown,
+    // not the full height of the stacked toolbar-view.
+    align-items: flex-start;
+
+    .IndexPage-toolbar-view {
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+
+      // Sort dropdown stays auto-width; it should not stretch to fill the column.
+      .item-sort {
+        width: auto;
+      }
+
+      // Bar mode: search fills the full column width.
+      // Icon mode: Button--icon is fixed 36px wide, width:100% is harmless.
+      .item-search {
+        width: 100%;
+
+        .Search-input .FormControl {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
